@@ -15,9 +15,9 @@ export class NameController {
     }
 
     @Get()
-    findAll(@Query('free') free?: boolean): Observable<NameInterface[]> {
-        if (!!free){
-            return this.service.findFree(free);     
+    findAll(@Query('rent') rent?: boolean): Observable<NameInterface[]> {
+        if (!!rent){
+            return this.service.findFree(rent);     
         }
         return this.service.findAll();
     }

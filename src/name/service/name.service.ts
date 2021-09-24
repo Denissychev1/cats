@@ -32,9 +32,8 @@ putKind(id: number,cat: NameInterface): Observable<any> {
 deleteKind(id: number): Observable<any> {
     return from(this.catRepository.delete(id));
 }
-findFree(free: boolean): Observable<NameInterface[]>{
-    console.log(free)
-    return from(this.catRepository.find({where:{is_rent: free}, relations: ['kind']}));
+findFree(rent: boolean): Observable<NameInterface[]>{
+    return from(this.catRepository.find({where:{is_rent: rent}, relations: ['kind']}));
 
 }
 }
