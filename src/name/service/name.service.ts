@@ -26,10 +26,15 @@ export class NameService {
 }
 
 putKind(id: number,cat: NameInterface): Observable<any> {
-    return from(this.catRepository.update(id,cat))
+    return from(this.catRepository.update(id,cat));
 }
 
 deleteKind(id: number): Observable<any> {
-    return from(this.catRepository.delete(id))
+    return from(this.catRepository.delete(id));
+}
+findFree(free: boolean): Observable<NameInterface[]>{
+    console.log(free)
+    return from(this.catRepository.find({where:{is_rent: free}, relations: ['kind']}));
+
 }
 }

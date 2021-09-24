@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { NameInterface } from '../models/name.interface';
 import { NameService } from '../service/name.service';
-import {Body, Get, Post, Param, Put, Delete} from '@nestjs/common';
+import {Body, Get, Post, Param, Put, Delete, Query} from '@nestjs/common';
 import {Observable} from "rxjs";
 
 @Controller('cats')
@@ -15,7 +15,10 @@ export class NameController {
     }
 
     @Get()
-    findAll(): Observable<NameInterface[]> {
+    findAll(@Query('free') free?: boolean): Observable<NameInterface[]> {
+        if (!!free){
+            return this.service.findFree(free);     
+        }
         return this.service.findAll();
     }
     @Get(':id')
